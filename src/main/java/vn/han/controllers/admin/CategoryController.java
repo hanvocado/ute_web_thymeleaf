@@ -25,7 +25,7 @@ public class CategoryController {
 	@RequestMapping
 	public String categories(Model model, String search, Integer pageNo) {
 		Page<Category> page;
-		Integer pageSize = 2;
+		Integer pageSize = 3;
 		if (pageNo == null) pageNo = 0;
     	if(search != null && !search.isBlank())
     		page = categoryService.getByName(pageNo, pageSize, search);
