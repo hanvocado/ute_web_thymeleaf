@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{adminbase::layout(~{::section})}">
+<head>
+	<meta charset="UTF-8">
+    <title>Trang chủ</title>
+</head>
+<body>
+	<section> 
+		<div class="row">
+		    <div class="col-md-12">
+		    </div>
+		</div>
+		<form th:action="@{/admin/categories/add}" method="post" class="form-horizontal form-row-seperated" enctype="multipart/form-data">
+		    <div class="portlet light">
+		        <div class="portlet-title">
+		            <div class="caption">
+		                <i class="icon-basket font-green-sharp"></i>
+		                <span class="caption-subject font-green-sharp bold uppercase">Tạo danh mục</span>
+		            </div>
+		            <!-- END FORM CAPTION -->
+		            <div class="actions btn-set">
+		                <button type="submit" class="btn green-haze btn-circle"><i class="fa fa-check"></i> Lưu</button>
+		            </div>
+		        </div>
+		    </div>
+		    <!-- END FORM TITLE -->
+		    <div class="portlet-body">
+		        <div class="tabbable">
+		            <div class="form-body">
+		                <div class="form-group">
+		                    <label class="col-md-2 control-label">Tên: <span class="required">* </span></label>
+		                    <div class="col-md-10">
+		                        <input type="text" class="form-control" name="name" placeholder="">
+		                    </div>
+		                </div>
+		
+		                <div class="form-group">
+		                    <label class="col-md-2 control-label">Ảnh: <span class="required">* </span></label>
+		                    <div class="col-md-10">
+		                        <input type="text" class="form-control" name="image" placeholder="">
+		                        <span>HOẶC</span>
+		                        <hr>
+		                        <input type="file" name="file" class="form-control form-control-borderless form-control-flush">
+		                    </div>
+		                </div>
+		
+		                <div class="form-group">
+		                    <label class="col-md-2 control-label">Hoạt động: <span class="required">* </span></label>
+		                    <div class="col-md-10">
+		                        <input type="checkbox" checked value="true" class="form-control" name="active">
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</form>
+	</section>
+
+</body>
+</html>
