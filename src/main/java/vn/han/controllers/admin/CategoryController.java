@@ -36,12 +36,12 @@ public class CategoryController {
 		ViewMessage message = (ViewMessage) model.asMap().get("result");
 		model.addAttribute("message", message);		 
         
-        return "/admin/categories";
+        return "admin/categories";
 	}
 	
 	@GetMapping("/add")
 	public String add(Model model) {
-		return "/admin/add-category";
+		return "admin/add-category";
 	}
 	
 	@PostMapping("/add")
@@ -72,7 +72,7 @@ public class CategoryController {
 	public String edit(@PathVariable("id") Long id, Model model) {
 		Category cate = categoryService.getById(id);
 		model.addAttribute("category", cate);
-		return "/admin/update-category";
+		return "admin/update-category";
 	} 
 	
 	@PostMapping("/edit")
