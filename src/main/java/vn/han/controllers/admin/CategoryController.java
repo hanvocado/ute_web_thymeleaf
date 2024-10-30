@@ -40,6 +40,7 @@ public class CategoryController {
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("isFirst", page.isFirst());
 		model.addAttribute("isLast", page.isLast());
+		model.addAttribute("pageTitle", "Danh mục");
 		
 		ViewMessage message = (ViewMessage) model.asMap().get("result");
 		model.addAttribute("message", message);		 
@@ -49,6 +50,7 @@ public class CategoryController {
 	
 	@GetMapping("/add")
 	public String add(Model model) {
+		model.addAttribute("pageTitle", "Tạo danh mục");
 		return "admin/add-category";
 	}
 	
@@ -80,6 +82,7 @@ public class CategoryController {
 	public String edit(@PathVariable("id") Long id, Model model) {
 		Category cate = categoryService.getById(id);
 		model.addAttribute("category", cate);
+		model.addAttribute("pageTitle", "Cập nhật danh mục");
 		return "admin/update-category";
 	} 
 	
