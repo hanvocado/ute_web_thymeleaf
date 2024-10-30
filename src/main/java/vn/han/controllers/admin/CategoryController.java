@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,16 +23,23 @@ public class CategoryController {
 	CategoryService categoryService;
 
 	@RequestMapping
-	public String categories(Model model, String search) {
-		List<Category> categories;
+	public String categories(Model model, String search, Integer pageNo) {
+		Page<Category> page;
+		Integer pageSize = 2;
+		if (pageNo == null) pageNo = 0;
     	if(search != null && !search.isBlank())
-    		categories = categoryService.getByName(search);
+    		page = categoryService.getByName(pageNo, pageSize, search);
 		else
-			categories = categoryService.getAll();
+			page = categoryService.getAll(pageNo, pageSize);
         
-        model.addAttribute("categories", categories);
-        model.addAttribute("count", categories.size());
-        model.addAttribute("search", search);        
+        model.addAttribute("categories", page.getContent());
+        model.addAttribute("search", search); 
+        model.addAttribute("pageNo", page.getNumber());
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("count", page.getTotalElements());
+		model.addAttribute("totalPages", page.getTotalPages());
+		model.addAttribute("isFirst", page.isFirst());
+		model.addAttribute("isLast", page.isLast());
 		
 		ViewMessage message = (ViewMessage) model.asMap().get("result");
 		model.addAttribute("message", message);		 
